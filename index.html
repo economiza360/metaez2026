@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Projeção 2026 — Economiza 360</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--orange:#FF6A00;--dark:#1a1a1a;--bg:#FAFAFA;--card:#fff;--gray:#666;--light-gray:#f0f0f0;--green:#00C853;--red:#FF1744;--blue:#2979FF}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--dark);line-height:1.6}
+a{text-decoration:none;color:inherit}
+
+/* HEADER */
+.header{background:var(--dark);padding:16px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;border-bottom:3px solid var(--orange)}
+.logo-area{display:flex;align-items:center;gap:12px}
+.logo-box{width:38px;height:38px;background:var(--orange);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:14px}
+.logo-text{color:#fff;font-size:20px;font-weight:700}
+.logo-text span{color:var(--orange)}
+.header-badge{background:var(--orange);color:#fff;padding:6px 18px;border-radius:20px;font-size:13px;font-weight:600}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--dark) 0%,#2a2a2a 100%);padding:60px 40px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(255,106,0,.15),transparent 70%);border-radius:50%}
+.hero-label{display:inline-block;background:rgba(255,106,0,.15);color:var(--orange);padding:8px 24px;border-radius:30px;font-size:14px;font-weight:600;margin-bottom:20px;border:1px solid rgba(255,106,0,.3)}
+.hero h1{color:#fff;font-size:clamp(28px,4vw,48px);font-weight:800;margin-bottom:12px}
+.hero h1 span{color:var(--orange)}
+.hero p{color:rgba(255,255,255,.6);font-size:18px;max-width:600px;margin:0 auto}
+
+/* METAS GLOBAIS */
+.metas{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;padding:40px;max-width:1200px;margin:-40px auto 0;position:relative;z-index:10}
+.meta-card{background:var(--card);border-radius:16px;padding:28px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.06);border:1px solid #eee;transition:transform .2s}
+.meta-card:hover{transform:translateY(-4px)}
+.meta-icon{font-size:32px;margin-bottom:8px}
+.meta-value{font-size:clamp(24px,3vw,36px);font-weight:900;color:var(--orange)}
+.meta-label{font-size:14px;color:var(--gray);margin-top:4px}
+
+/* SECTIONS */
+.section{padding:50px 40px;max-width:1200px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:40px}
+.section-num{display:inline-block;background:var(--orange);color:#fff;width:36px;height:36px;border-radius:50%;font-weight:800;font-size:16px;line-height:36px;margin-bottom:10px}
+.section-title{font-size:clamp(22px,3vw,32px);font-weight:800;color:var(--dark)}
+.section-title span{color:var(--orange)}
+.section-sub{color:var(--gray);font-size:15px;margin-top:6px}
+.divider{width:60px;height:4px;background:var(--orange);border-radius:4px;margin:16px auto 0}
+
+/* TABLES */
+.table-wrap{overflow-x:auto;border-radius:12px;box-shadow:0 2px 16px rgba(0,0,0,.05);margin-bottom:30px}
+table{width:100%;border-collapse:collapse;background:var(--card)}
+thead{background:var(--dark)}
+thead th{padding:14px 18px;color:#fff;font-size:13px;font-weight:600;text-align:left;text-transform:uppercase;letter-spacing:.5px}
+tbody td{padding:13px 18px;font-size:14px;border-bottom:1px solid #f0f0f0}
+tbody tr:hover{background:rgba(255,106,0,.03)}
+tbody tr:last-child td{border-bottom:none}
+.text-right{text-align:right}
+.text-center{text-align:center}
+.highlight-row{background:rgba(255,106,0,.06)!important;font-weight:700}
+.highlight-row td{color:var(--orange);font-weight:800}
+.badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600}
+.badge-orange{background:rgba(255,106,0,.1);color:var(--orange)}
+.badge-green{background:rgba(0,200,83,.1);color:var(--green)}
+.badge-blue{background:rgba(41,121,255,.1);color:var(--blue)}
+
+/* BAR CHARTS */
+.bar-chart{display:flex;flex-direction:column;gap:14px;margin:20px 0}
+.bar-item{display:flex;align-items:center;gap:14px}
+.bar-label{min-width:100px;font-size:14px;font-weight:600;text-align:right}
+.bar-track{flex:1;height:36px;background:var(--light-gray);border-radius:8px;overflow:hidden;position:relative}
+.bar-fill{height:100%;border-radius:8px;display:flex;align-items:center;justify-content:flex-end;padding-right:12px;font-size:13px;font-weight:700;color:#fff;transition:width 1s ease}
+.bar-fill.orange{background:linear-gradient(90deg,#FF6A00,#FF8C33)}
+.bar-fill.green{background:linear-gradient(90deg,#00C853,#69F0AE)}
+.bar-fill.blue{background:linear-gradient(90deg,#2979FF,#64B5F6)}
+.bar-fill.dark{background:linear-gradient(90deg,#333,#555)}
+.bar-value{min-width:110px;font-size:14px;font-weight:700;color:var(--dark)}
+
+/* FUNNEL */
+.funnel{display:flex;flex-direction:column;align-items:center;gap:0;margin:20px auto;max-width:700px}
+.funnel-step{display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:14px;padding:16px;text-align:center;position:relative;transition:transform .2s}
+.funnel-step:hover{transform:scale(1.03)}
+.funnel-rate{position:absolute;right:-120px;font-size:13px;color:var(--gray);font-weight:600}
+.funnel-arrow{color:var(--orange);font-size:20px;margin:2px 0}
+
+/* PIE SIMULATION */
+.pie-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin:20px 0}
+.pie-card{background:var(--card);border-radius:14px;padding:24px;text-align:center;border:1px solid #eee;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.pie-ring{width:120px;height:120px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900}
+.pie-label{font-size:14px;font-weight:600;color:var(--dark)}
+.pie-sub{font-size:13px;color:var(--gray);margin-top:2px}
+
+/* RAMP UP */
+.ramp-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin:20px 0}
+.ramp-card{background:var(--card);border-radius:14px;padding:22px 16px;text-align:center;border:2px solid #eee;transition:all .3s}
+.ramp-card:hover{border-color:var(--orange);box-shadow:0 4px 20px rgba(255,106,0,.12)}
+.ramp-month{font-size:18px;font-weight:800;color:var(--orange);margin-bottom:4px}
+.ramp-pct{font-size:28px;font-weight:900;color:var(--dark)}
+.ramp-detail{font-size:12px;color:var(--gray);margin-top:8px;line-height:1.5}
+.ramp-detail strong{color:var(--dark)}
+
+/* KPI ROW */
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin:20px 0}
+.kpi{background:var(--card);border-radius:14px;padding:22px;text-align:center;border-left:4px solid var(--orange);box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.kpi-icon{font-size:28px;margin-bottom:6px}
+.kpi-val{font-size:24px;font-weight:900;color:var(--orange)}
+.kpi-name{font-size:13px;color:var(--gray);margin-top:4px}
+
+/* EXEC SUMMARY */
+.exec-box{background:linear-gradient(135deg,var(--dark),#2a2a2a);border-radius:20px;padding:50px;color:#fff;text-align:center;position:relative;overflow:hidden}
+.exec-box::before{content:'';position:absolute;top:-50%;left:-20%;width:500px;height:500px;background:radial-gradient(circle,rgba(255,106,0,.1),transparent 70%);border-radius:50%}
+.exec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;margin-top:30px;position:relative;z-index:1}
+.exec-item{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:24px}
+.exec-val{font-size:28px;font-weight:900;color:var(--orange)}
+.exec-label{font-size:13px;color:rgba(255,255,255,.6);margin-top:4px}
+.gold-rule{display:inline-block;background:var(--orange);color:#fff;padding:14px 36px;border-radius:14px;font-size:20px;font-weight:800;margin-top:30px;box-shadow:0 4px 20px rgba(255,106,0,.3)}
+
+/* FOOTER */
+.footer{text-align:center;padding:30px;color:var(--gray);font-size:13px;border-top:1px solid #eee}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+.header{padding:12px 16px}
+.hero{padding:40px 20px}
+.section{padding:30px 16px}
+.metas{padding:20px 16px;margin-top:-30px}
+.ramp-grid{grid-template-columns:repeat(2,1fr)}
+.funnel-rate{display:none}
+.exec-box{padding:30px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+<div class="logo-area">
+<div class="logo-box">EZ</div>
+<div class="logo-text">Economiza<span>360</span></div>
+</div>
+<div class="header-badge">📊 Projeção 2026</div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-label">📈 PLANEJAMENTO ESTRATÉGICO</div>
+<h1>Projeção de <span>Faturamento</span><br>Agosto — Dezembro 2026</h1>
+<p>Meta de R$ 1 milhão em 5 meses com operação escalável e previsível</p>
+</div>
+
+<!-- METAS GLOBAIS -->
+<div class="metas">
+<div class="meta-card">
+<div class="meta-icon">💰</div>
+<div class="meta-value">R$ 1.040.000</div>
+<div class="meta-label">Faturamento Total</div>
+</div>
+<div class="meta-card">
+<div class="meta-icon">🏦</div>
+<div class="meta-value">R$ 252.500</div>
+<div class="meta-label">Caixa Gerado</div>
+</div>
+<div class="meta-card">
+<div class="meta-icon">📝</div>
+<div class="meta-value">35</div>
+<div class="meta-label">Contratos P1</div>
+</div>
+<div class="meta-card">
+<div class="meta-icon">📆</div>
+<div class="meta-value">5 meses</div>
+<div class="meta-label">Ago → Dez 2026</div>
+</div>
+</div>
+
+<!-- SEÇÃO 1: FATURAMENTO POR PRODUTO -->
+<div class="section">
+<div class="section-header">
+<div class="section-num">1</div>
+<div class="section-title">Faturamento por <span>Produto</span></div>
+<div class="section-sub">Composição da receita total de R$ 1.040.000</div>
+<div class="divider"></div>
+</div>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Produto</th>
+<th class="text-right">Ticket Médio</th>
+<th class="text-center">Contratos</th>
+<th class="text-right">Receita</th>
+<th class="text-center">%</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>P1</strong> — Full High End</td>
+<td class="text-right">R$ 25.000</td>
+<td class="text-center">35</td>
+<td class="text-right"><strong>R$ 875.000</strong></td>
+<td class="text-center"><span class="badge badge-orange">84,1%</span></td>
+</tr>
+<tr>
+<td><strong>P2</strong> — RH/DP</td>
+<td class="text-right">R$ 4.500</td>
+<td class="text-center">10</td>
+<td class="text-right">R$ 45.000</td>
+<td class="text-center"><span class="badge badge-blue">4,3%</span></td>
+</tr>
+<tr>
+<td><strong>P3</strong> — Tecnologia</td>
+<td class="text-right">R$ 4.500</td>
+<td class="text-center">10</td>
+<td class="text-right">R$ 45.000</td>
+<td class="text-center"><span class="badge badge-blue">4,3%</span></td>
+</tr>
+<tr>
+<td><strong>P4</strong> — Recrutamento e Seleção</td>
+<td class="text-right">R$ 7.500</td>
+<td class="text-center">10</td>
+<td class="text-right">R$ 75.000</td>
+<td class="text-center"><span class="badge badge-blue">7,3%</span></td>
+</tr>
+<tr class="highlight-row">
+<td>TOTAL</td>
+<td class="text-right">—</td>
+<td class="text-center">65</td>
+<td class="text-right">R$ 1.040.000</td>
+<td class="text-center">100%</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="bar-chart">
+<div class="bar-item">
+<div class="bar-label">P1 Full</div>
+<div class="bar-track"><div class="bar-fill orange" style="width:84.1%">84,1%</div></div>
+<div class="bar-value">R$ 875.000</div>
+</div>
+<div class="bar-item">
+<div class="bar-label">P4 R&S</div>
+<div class="bar-track"><div class="bar-fill dark" style="width:7.3%"></div></div>
+<div class="bar-value">R$ 75.000</div>
+</div>
+<div class="bar-item">
+<div class="bar-label">P2 RH/DP</div>
+<div class="bar-track"><div class="bar-fill blue" style="width:4.3%"></div></div>
+<div class="bar-value">R$ 45.000</div>
+</div>
+<div class="bar-item">
+<div class="bar-label">P3 Tech</div>
+<div class="bar-track"><div class="bar-fill green" style="width:4.3%"></div></div>
+<div class="bar-value">R$ 45.000</div>
+</div>
+</div>
+</div>
+
+<!-- SEÇÃO 2: CAIXA POR PRODUTO -->
+<div class="section" style="background:#fff;border-radius:0">
+<div class="section-header">
+<div class="section-num">2</div>
+<div class="section-title">Caixa Gerado por <span>Produto</span></div>
+<div class="section-sub">Total de R$ 252.500 em entradas reais</div>
+<div class="divider"></div>
+</div>
+
+<div class="pie-grid">
+<div class="pie-card">
+<div class="pie-ring" style="background:conic-gradient(var(--orange) 0% 34.7%,#eee 34.7% 100%)"><span style="color:var(--orange)">34,7%</span></div>
+<div class="pie-label">P1 — Full High End</div>
+<div class="pie-sub">R$ 87.500 (10% entrada)</div>
+</div>
+<div class="pie-card">
+<div class="pie-ring" style="background:conic-gradient(var(--blue) 0% 17.8%,#eee 17.8% 100%)"><span style="color:var(--blue)">17,8%</span></div>
+<div class="pie-label">P2 — RH/DP</div>
+<div class="pie-sub">R$ 45.000 (100% à vista)</div>
+</div>
+<div class="pie-card">
+<div class="pie-ring" style="background:conic-gradient(var(--green) 0% 17.8%,#eee 17.8% 100%)"><span style="color:var(--green)">17,8%</span></div>
+<div class="pie-label">P3 — Tecnologia</div>
+<div class="pie-sub">R$ 45.000 (100% à vista)</div>
+</div>
+<div class="pie-card">
+<div class="pie-ring" style="background:conic-gradient(#333 0% 29.7%,#eee 29.7% 100%)"><span style="color:#333">29,7%</span></div>
+<div class="pie-label">P4 — R&S</div>
+<div class="pie-sub">R$ 75.000 (100% à vista)</div>
+</div>
+</div>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Produto</th>
+<th>Regra</th>
+<th class="text-right">Caixa</th>
+<th class="text-center">%</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1 — Full High End</td>
+<td>10% na entrada</td>
+<td class="text-right"><strong>R$ 87.500</strong></td>
+<td class="text-center"><span class="badge badge-orange">34,7%</span></td>
+</tr>
+<tr>
+<td>P2 — RH/DP</td>
+<td>100% à vista</td>
+<td class="text-right">R$ 45.000</td>
+<td class="text-center"><span class="badge badge-blue">17,8%</span></td>
+</tr>
+<tr>
+<td>P3 — Tecnologia</td>
+<td>100% à vista</td>
+<td class="text-right">R$ 45.000</td>
+<td class="text-center"><span class="badge badge-green">17,8%</span></td>
+</tr>
+<tr>
+<td>P4 — Recrutamento e Seleção</td>
+<td>100% à vista</td>
+<td class="text-right">R$ 75.000</td>
+<td class="text-center"><span class="badge badge-blue">29,7%</span></td>
+</tr>
+<tr class="highlight-row">
+<td>TOTAL</td>
+<td>—</td>
+<td class="text-right">R$ 252.500</td>
+<td class="text-center">100%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- SEÇÃO 3: RAMP-UP MENSAL -->
+<div class="section">
+<div class="section-header">
+<div class="section-num">3</div>
+<div class="section-title">Ramp-Up <span>Mensal</span></div>
+<div class="section-sub">Crescimento progressivo: 10% → 15% → 20% → 25% → 30%</div>
+<div class="divider"></div>
+</div>
+
+<div class="ramp-grid">
+<div class="ramp-card">
+<div class="ramp-month">AGO</div>
+<div class="ramp-pct">10%</div>
+<div style="background:var(--orange);height:4px;width:10%;border-radius:4px;margin:10px auto"></div>
+<div class="ramp-detail">
+<strong>R$ 104.000</strong> faturamento<br>
+<strong>R$ 25.250</strong> caixa<br>
+<strong>3-4</strong> contratos
+</div>
+</div>
+<div class="ramp-card">
+<div class="ramp-month">SET</div>
+<div class="ramp-pct">15%</div>
+<div style="background:var(--orange);height:4px;width:15%;border-radius:4px;margin:10px auto"></div>
+<div class="ramp-detail">
+<strong>R$ 156.000</strong> faturamento<br>
+<strong>R$ 37.875</strong> caixa<br>
+<strong>5</strong> contratos
+</div>
+</div>
+<div class="ramp-card">
+<div class="ramp-month">OUT</div>
+<div class="ramp-pct">20%</div>
+<div style="background:var(--orange);height:4px;width:20%;border-radius:4px;margin:10px auto"></div>
+<div class="ramp-detail">
+<strong>R$ 208.000</strong> faturamento<br>
+<strong>R$ 50.500</strong> caixa<br>
+<strong>7</strong> contratos
+</div>
+</div>
+<div class="ramp-card">
+<div class="ramp-month">NOV</div>
+<div class="ramp-pct">25%</div>
+<div style="background:var(--orange);height:4px;width:25%;border-radius:4px;margin:10px auto"></div>
+<div class="ramp-detail">
+<strong>R$ 260.000</strong> faturamento<br>
+<strong>R$ 63.125</strong> caixa<br>
+<strong>9</strong> contratos
+</div>
+</div>
+<div class="ramp-card">
+<div class="ramp-month">DEZ</div>
+<div class="ramp-pct">30%</div>
+<div style="background:var(--orange);height:4px;width:30%;border-radius:4px;margin:10px auto"></div>
+<div class="ramp-detail">
+<strong>R$ 312.000</strong> faturamento<br>
+<strong>R$ 75.750</strong> caixa<br>
+<strong>11</strong> contratos
+</div>
+</div>
+</div>
+
+<div class="bar-chart" style="margin-top:30px">
+<div class="bar-item">
+<div class="bar-label">Ago</div>
+<div class="bar-track"><div class="bar-fill orange" style="width:33%">R$ 104k</div></div>
+<div class="bar-value">R$ 25.250 cx</div>
+</div>
+<div class="bar-item">
+<div class="bar-label">Set</div>
+<div class="bar-track"><div class="bar-fill orange" style="width:50%">R$ 156k</div></div>
+<div class="bar-value">R$ 37.875 cx</div>
+</div>
+<div class="bar-item">
+<div class="bar-label">Out</div>
+<div class="bar-track"><div class="bar-fill orange" style="width:67%">R$ 208k</div></div>
+<div class="bar-value">R$ 50.500 cx</div>
+</div>
+<div class="bar-item">
+<div class="bar-label">Nov</div>
+<div class="bar-track"><div class="bar-fill orange" style="width:83%">R$ 260k</div></div>
+<div class="bar-value">R$ 63.125 cx</div>
+</div>
+<div class="bar-item">
+<div class="bar-label">Dez</div>
+<div class="bar-track"><div class="bar-fill orange" style="width:100%">R$ 312k</div></div>
+<div class="bar-value">R$ 75.750 cx</div>
+</div>
+</div>
+</div>
+
+<!-- SEÇÃO 4: FUNIL COMERCIAL -->
+<div class="section" style="background:#fff">
+<div class="section-header">
+<div class="section-num">4</div>
+<div class="section-title">Funil <span>Comercial</span></div>
+<div class="section-sub">100 leads → 11 contratos — Operação mensal estabilizada</div>
+<div class="divider"></div>
+</div>
+
+<div class="funnel">
+<div class="funnel-step" style="width:100%;max-width:650px;background:linear-gradient(90deg,#FF6A00,#FF8C33);border-radius:12px 12px 20px 20px;clip-path:polygon(0 0,100% 0,95% 100%,5% 100%)">
+🎯 100 Leads — 100%
+<span class="funnel-rate">Taxa: 100%</span>
+</div>
+<div class="funnel-arrow">▼</div>
+<div class="funnel-step" style="width:88%;max-width:570px;background:linear-gradient(90deg,#e65c00,#FF6A00);border-radius:20px;clip-path:polygon(3% 0,97% 0,93% 100%,7% 100%)">
+✅ 80 MQL — 80%
+<span class="funnel-rate">Taxa: 80%</span>
+</div>
+<div class="funnel-arrow">▼</div>
+<div class="funnel-step" style="width:74%;max-width:480px;background:linear-gradient(90deg,#cc5200,#e65c00);border-radius:20px;clip-path:polygon(4% 0,96% 0,91% 100%,9% 100%)">
+🔥 64 SQL — 80%
+<span class="funnel-rate">Taxa: 80%</span>
+</div>
+<div class="funnel-arrow">▼</div>
+<div class="funnel-step" style="width:58%;max-width:380px;background:linear-gradient(90deg,#b34700,#cc5200);border-radius:20px;clip-path:polygon(5% 0,95% 0,89% 100%,11% 100%)">
+📅 45 Agendamentos — 70%
+<span class="funnel-rate">Taxa: 70%</span>
+</div>
+<div class="funnel-arrow">▼</div>
+<div class="funnel-step" style="width:48%;max-width:310px;background:linear-gradient(90deg,#993d00,#b34700);border-radius:20px;clip-path:polygon(6% 0,94% 0,87% 100%,13% 100%)">
+🤝 42 Reuniões — 85%+recup.
+<span class="funnel-rate">85% + 60% recup.</span>
+</div>
+<div class="funnel-arrow">▼</div>
+<div class="funnel-step" style="width:32%;max-width:220px;background:linear-gradient(90deg,#00C853,#69F0AE);border-radius:20px;clip-path:polygon(8% 0,92% 0,85% 100%,15% 100%)">
+🏆 11 Vendas — 25%
+<span class="funnel-rate">Taxa: 25%</span>
+</div>
+</div>
+
+<div class="table-wrap" style="margin-top:30px">
+<table>
+<thead>
+<tr>
+<th>Etapa</th>
+<th class="text-center">Taxa</th>
+<th class="text-center">Volume</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>Leads</td><td class="text-center">100%</td><td class="text-center"><strong>100</strong></td></tr>
+<tr><td>MQL</td><td class="text-center">80%</td><td class="text-center">80</td></tr>
+<tr><td>SQL</td><td class="text-center">80%</td><td class="text-center">64</td></tr>
+<tr><td>Agendamento</td><td class="text-center">70%</td><td class="text-center">44,8</td></tr>
+<tr><td>Comparecimento</td><td class="text-center">85%</td><td class="text-center">38,1</td></tr>
+<tr><td>No-shows</td><td class="text-center">—</td><td class="text-center">6,7</td></tr>
+<tr><td>Recuperação (60%)</td><td class="text-center">60%</td><td class="text-center">+4,0</td></tr>
+<tr><td>Reuniões realizadas</td><td class="text-center">—</td><td class="text-center"><strong>42,1</strong></td></tr>
+<tr class="highlight-row"><td>🏆 Fechamento</td><td class="text-center">25%</td><td class="text-center">10,5 ≈ 11</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- SEÇÃO 5: ORIGEM DOS CONTRATOS -->
+<div class="section">
+<div class="section-header">
+<div class="section-num">5</div>
+<div class="section-title">Origem dos <span>35 Contratos</span></div>
+<div class="section-sub">Diversificação de canais de aquisição</div>
+<div class="divider"></div>
+</div>
+
+<div class="pie-grid" style="grid-template-columns:repeat(3,1fr)">
+<div class="pie-card">
+<div class="pie-ring" style="background:conic-gradient(var(--orange) 0% 69%,#eee 69% 100%)"><span style="color:var(--orange);font-size:18px">69%</span></div>
+<div class="pie-label">🎯 Tráfego Pago</div>
+<div class="pie-sub"><strong>24</strong> contratos</div>
+</div>
+<div class="pie-card">
+<div class="pie-ring" style="background:conic-gradient(var(--green) 0% 20%,#eee 20% 100%)"><span style="color:var(--green);font-size:18px">20%</span></div>
+<div class="pie-label">🤝 Indicação</div>
+<div class="pie-sub"><strong>7</strong> contratos</div>
+</div>
+<div class="pie-card">
+<div class="pie-ring" style="background:conic-gradient(var(--blue) 0% 11%,#eee 11% 100%)"><span style="color:var(--blue);font-size:18px">11%</span></div>
+<div class="pie-label">🔗 Parcerias / Hunters</div>
+<div class="pie-sub"><strong>4</strong> contratos</div>
+</div>
+</div>
+</div>
+
+<!-- SEÇÃO 6: INVESTIMENTO EM TRÁFEGO -->
+<div class="section" style="background:#fff">
+<div class="section-header">
+<div class="section-num">6</div>
+<div class="section-title">Investimento em <span>Tráfego</span></div>
+<div class="section-sub">230 leads necessários • CPL R$ 86</div>
+<div class="divider"></div>
+</div>
+
+<div class="kpi-row">
+<div class="kpi">
+<div class="kpi-icon">🎯</div>
+<div class="kpi-val">230</div>
+<div class="kpi-name">Leads necessários</div>
+</div>
+<div class="kpi">
+<div class="kpi-icon">💲</div>
+<div class="kpi-val">R$ 86</div>
+<div class="kpi-name">CPL médio</div>
+</div>
+<div class="kpi">
+<div class="kpi-icon">📢</div>
+<div class="kpi-val">R$ 19.780</div>
+<div class="kpi-name">Investimento total</div>
+</div>
+<div class="kpi">
+<div class="kpi-icon">💰</div>
+<div class="kpi-val">R$ 824</div>
+<div class="kpi-name">CAC por contrato</div>
+</div>
+<div class="kpi">
+<div class="kpi-icon">🚀</div>
+<div class="kpi-val">52x</div>
+<div class="kpi-name">ROI do tráfego</div>
+</div>
+</div>
+
+<div class="table-wrap" style="margin-top:30px">
+<table>
+<thead>
+<tr>
+<th>Mês</th>
+<th class="text-center">Contratos</th>
+<th class="text-center">Leads</th>
+<th class="text-right">Investimento</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>Agosto</td><td class="text-center">2-3</td><td class="text-center">25</td><td class="text-right">R$ 2.150</td></tr>
+<tr><td>Setembro</td><td class="text-center">4</td><td class="text-center">37</td><td class="text-right">R$ 3.182</td></tr>
+<tr><td>Outubro</td><td class="text-center">5</td><td class="text-center">46</td><td class="text-right">R$ 3.956</td></tr>
+<tr><td>Novembro</td><td class="text-center">6</td><td class="text-center">55</td><td class="text-right">R$ 4.730</td></tr>
+<tr><td>Dezembro</td><td class="text-center">7</td><td class="text-center">67</td><td class="text-right">R$ 5.762</td></tr>
+<tr class="highlight-row"><td>TOTAL</td><td class="text-center">24</td><td class="text-center">230</td><td class="text-right">R$ 19.780</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- SEÇÃO 7: KPIs -->
+<div class="section">
+<div class="section-header">
+<div class="section-num">7</div>
+<div class="section-title">Métricas-Chave para <span>Gestão</span></div>
+<div class="divider"></div>
+</div>
+
+<div class="kpi-row">
+<div class="kpi">
+<div class="kpi-icon">🎯</div>
+<div class="kpi-val">1 : 9</div>
+<div class="kpi-name">Contrato a cada 9 leads</div>
+</div>
+<div class="kpi">
+<div class="kpi-icon">💰</div>
+<div class="kpi-val">R$ 824</div>
+<div class="kpi-name">CAC</div>
+</div>
+<div class="kpi">
+<div class="kpi-icon">📞</div>
+<div class="kpi-val">19/mês</div>
+<div class="kpi-name">Reuniões (estab.)</div>
+</div>
+<div class="kpi">
+<div class="kpi-icon">🔄</div>
+<div class="kpi-val">25%</div>
+<div class="kpi-name">Taxa de fechamento</div>
+</div>
+<div class="kpi">
+<div class="kpi-icon">💵</div>
+<div class="kpi-val">R$ 25k</div>
+<div class="kpi-name">Ticket médio P1</div>
+</div>
+<div class="kpi">
+<div class="kpi-icon">📈</div>
+<div class="kpi-val">52x</div>
+<div class="kpi-name">ROI do tráfego</div>
+</div>
+</div>
+</div>
+
+<!-- SEÇÃO 8: RESUMO EXECUTIVO -->
+<div class="section">
+<div class="exec-box">
+<div class="section-num" style="background:#fff;color:var(--orange)">✦</div>
+<h2 style="font-size:clamp(22px,3vw,34px);font-weight:800;margin-top:12px">Resumo Executivo</h2>
+<p style="color:rgba(255,255,255,.5);margin-top:6px">Ago → Dez 2026 — Economiza 360</p>
+
+<div class="exec-grid">
+<div class="exec-item">
+<div class="exec-val">R$ 1.040.000</div>
+<div class="exec-label">Faturamento</div>
+</div>
+<div class="exec-item">
+<div class="exec-val">R$ 252.500</div>
+<div class="exec-label">Caixa</div>
+</div>
+<div class="exec-item">
+<div class="exec-val">35 + 30</div>
+<div class="exec-label">Contratos P1 + P2/P3/P4</div>
+</div>
+<div class="exec-item">
+<div class="exec-val">230</div>
+<div class="exec-label">Leads via tráfego</div>
+</div>
+<div class="exec-item">
+<div class="exec-val">R$ 19.780</div>
+<div class="exec-label">Investimento em tráfego</div>
+</div>
+<div class="exec-item">
+<div class="exec-val">52x</div>
+<div class="exec-label">ROI</div>
+</div>
+</div>
+
+<div class="gold-rule">🏆 1 contrato a cada 9 leads</div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+© 2026 Economiza 360 — Projeção Estratégica — Confidencial
+</div>
+
+</body>
+</html>
